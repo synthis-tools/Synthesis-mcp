@@ -1,0 +1,55 @@
+{
+  "name": "synthesis-mcp",
+  "version": "1.0.0",
+  "description": "Persistent project memory for AI coding assistants - never lose context between sessions",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "bin": {
+    "synthesis-mcp": "./dist/index.cjs"
+  },
+  "files": [
+    "dist/index.cjs"
+  ],
+  "scripts": {
+    "build": "esbuild src/index.ts --outfile=dist/index.cjs --bundle --platform=node --format=cjs --banner:js=\"#!/usr/bin/env node\"",
+    "dev": "npm run build && npm run inspect",
+    "watch": "esbuild src/index.ts --outfile=dist/index.cjs --bundle --platform=node --format=cjs --banner:js=\"#!/usr/bin/env node\" --watch",
+    "start": "node dist/index.cjs",
+    "start:http": "TRANSPORT=http node dist/index.cjs",
+    "inspect": "npx @modelcontextprotocol/inspector node dist/index.cjs",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "synthesis",
+    "ai",
+    "claude",
+    "coding-assistant",
+    "project-memory",
+    "context-management"
+  ],
+  "author": "Synthis",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/synthis-tools/synthesis-mcp.git"
+  },
+  "homepage": "https://synthis.tools",
+  "bugs": {
+    "url": "https://github.com/synthis-tools/synthesis-mcp/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.3"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/inspector": "^0.16.1",
+    "@types/node": "^22.10.1",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.3.3"
+  }
+}

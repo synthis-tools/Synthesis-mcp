@@ -1,0 +1,20 @@
+# Smithery configuration file: https://smithery.ai/docs/config
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      synthesisHome:
+        type: string
+        title: Synthesis Home Directory
+        description: Directory to store project context and lessons (default: ~/Claude Synthesis Projects)
+    required: []
+  commandFunction: |-
+    (config) => ({
+      command: 'node',
+      args: ['dist/index.cjs'],
+      env: {
+        SYNTHESIS_HOME: config.synthesisHome || ''
+      }
+    })
